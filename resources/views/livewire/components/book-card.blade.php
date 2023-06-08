@@ -1,6 +1,5 @@
 {{-- {{ route('book.about', $book->slug . '-' . $book->id) }} --}}
-<a href="{{ route('book.about', $book->slug . '-' . $book->id) }}"
-    class="bg-white hover:-translate-y-1 hover:shadow-md transition-transform">
+<a href="{{ route('book.about', $book->slug . '-' . $book->id) }}" class="hover:-translate-y-1 transition-transform">
     <img src="{{ asset('imgs/books/' . $book->photo) }}" onerror="this.src='{{ asset('images/no_image.png') }}'"
         alt="" class="aspect-[2/2.8] overflow-hidden rounded-t-md w-full object-cover">
     <div class="px-2 pb-2">

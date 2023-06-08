@@ -27,7 +27,7 @@
     </div>
 
     <div class="max-w-screen-lg mx-auto pt-24 px-6 ">
-        {{-- <x-comment :comments="$comments" /> --}}
+        <livewire:components.comments :chap="$chap" />
     </div>
 
 </div>

@@ -13,7 +13,7 @@
 
 </head>
 
-<body class="antialiased">
+<body class="antialiased bg-test">
     <livewire:components.partials.navbar />
     {{-- @livewire('components.partials.navbar') --}}
 
