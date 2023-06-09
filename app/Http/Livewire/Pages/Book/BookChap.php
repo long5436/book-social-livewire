@@ -24,9 +24,10 @@ class BookChap extends Component
 
         $str = (explode("-", $slug));
         $id = $str[count($str) - 1];
+        $book = Book::find($bookId);
+        $this->book = $book;
         $this->chap = Chap::find($id);
         $this->chapContent = ChapContent::find($id);
-        $this->book = Book::find($bookId);
         // $this->chaps = $book->chaps()->orderBy('order_by')->get();
         $comments = $this->book->comments->whereNull('parent_id');
 
@@ -42,6 +43,10 @@ class BookChap extends Component
 
         $this->comments = $comments;
         // dd($comments);
+
+        // tang luot doc nhanh chong bang cach tang sau moi lan load "chap page"
+        $book->read_count = $book->read_count + 1;
+        $book->save();
     }
 
     public function render()

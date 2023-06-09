@@ -5,11 +5,15 @@
     <div class="px-2 pb-2">
         <h3 class="font-medium pt-2">{{ $book->name }}</h3>
         <div class="pb-1">
-            <i class="fa-solid fa-star text-xxs text-yellow-500"></i>
-            <i class="fa-solid fa-star text-xxs text-yellow-500"></i>
-            <i class="fa-solid fa-star text-xxs text-yellow-500"></i>
-            <i class="fa-solid fa-star text-xxs text-yellow-500"></i>
-            <i class="fa-solid fa-star text-xxs text-gray-500"></i>
+            <i class="fa-solid fa-star text-xxs {{ $this->getAverage() > 0 ? 'text-yellow-500' : 'text-gray-300' }}"></i>
+            <i
+                class="fa-solid fa-star text-xxs {{ $this->getAverage() > 1 ? 'text-yellow-500' : 'text-gray-300' }}"></i>
+            <i
+                class="fa-solid fa-star text-xxs {{ $this->getAverage() > 2 ? 'text-yellow-500' : 'text-gray-300' }}"></i>
+            <i
+                class="fa-solid fa-star text-xxs {{ $this->getAverage() > 3 ? 'text-yellow-500' : 'text-gray-300' }}"></i>
+            <i
+                class="fa-solid fa-star text-xxs {{ $this->getAverage() > 4 ? 'text-yellow-500' : 'text-gray-300' }}"></i>
         </div>
         <div class="text-sm">
 

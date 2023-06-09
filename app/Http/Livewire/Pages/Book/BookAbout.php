@@ -3,7 +3,10 @@
 namespace App\Http\Livewire\Pages\Book;
 
 use App\Models\Book;
+use App\Models\Rating;
+use Auth;
 use Livewire\Component;
+use Illuminate\Support\Facades\DB;
 
 class BookAbout extends Component
 {
@@ -14,6 +17,7 @@ class BookAbout extends Component
     public $totalPages;
     public $totalChaps;
     public $chapFirst;
+    public $myRating = [];
 
     public function mount($slug)
     {
@@ -31,10 +35,62 @@ class BookAbout extends Component
         $this->totalPages = $chaps->lastPage();
         $this->totalChaps = $book->chaps()->count();
         $this->chapFirst = $book->chaps()->where('order_by', 1)->first();
+
+        if (Auth::check()) {
+            $this->myRating = $book->ratings->where('user_id', Auth::user()->id);
+            // dd($book->ratings->where('user_id', 1));
+        }
     }
 
     public function render()
     {
         return view('livewire.pages.book.book-about');
+    }
+
+    public function getAverage()
+    {
+        $result = DB::table('ratings')
+            ->select(DB::raw('AVG(rating) as average_rating'))
+            ->where('book_id', $this->book->id)
+            ->groupBy('book_id')
+            ->first();
+
+        if ($result) {
+
+            return intval(round($result->average_rating, 0));
+        }
+
+        return 0;
+    }
+
+    public function rating($value)
+    {
+        if (Auth::check()) {
+
+            if (count($this->myRating) > 0) {
+
+                // dd($this->myRating[0]);
+
+                $rt = Rating::find($this->myRating[0]['id']);
+                if ($rt) {
+                    $rt->rating = $value;
+
+                    if ($rt->save()) {
+                        $this->myRating = array($rt);
+                    }
+                }
+            } else {
+
+                $newRating = Rating::create([
+                    'book_id' => $this->book->id,
+                    'user_id' => Auth::user()->id,
+                    'rating' => $value,
+                ]);
+
+                if ($newRating->save()) {
+                    $this->myRating = array($newRating);
+                }
+            }
+        }
     }
 }

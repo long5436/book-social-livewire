@@ -9,7 +9,7 @@
 
         @if (Auth::check())
             <div>
-                <button class="bg-primary text-white px-3 py-2 rounded-md hover:opacity-90" wire:click="btnComment">
+                <button class="bg-primary text-white px-3 py-2 rounded-md hover:opacity-90" wire:click="btnComment(null)">
                     Bình luận
                 </button>
             </div>

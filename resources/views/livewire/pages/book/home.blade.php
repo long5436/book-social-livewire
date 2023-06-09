@@ -9,6 +9,10 @@
             <div class="px-4 md:px-0">
                 <h2 class="font-medium text-2xl py-4">Sách mới</h2>
                 <livewire:components.book-grid :books="$booksNew" />
+
+                <div class="text-center py-4">
+                    <livewire:components.pagination :currentPage="$page" :totalPage="$totalPages" />
+                </div>
             </div>
         </div>
         <div class="w-full px-0 md:w-3/12"></div>

@@ -7,16 +7,19 @@ use App\Models\Book;
 
 class Home extends Component
 {
-
     public $booksNew;
+    public $perPage = 20;
+    public $totalPages;
+    public $page = 1;
 
     public function mount()
     {
-        $perPage = 20;
-        $page = request()->get('page', 1);
-        $this->booksNew = Book::orderBy('created_at', 'desc')
-            ->paginate($perPage, ['*'], 'page', $page)
-            ->getCollection();
+        $this->page = request()->get('page', 1);
+        $books = Book::orderBy('created_at', 'desc')
+            ->paginate($this->perPage, ['*'], 'page', $this->page);
+
+        $this->booksNew = $books->getCollection();
+        $this->totalPages = $books->lastPage();
     }
 
     public function render()
