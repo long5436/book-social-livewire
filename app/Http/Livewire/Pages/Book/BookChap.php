@@ -28,11 +28,20 @@ class BookChap extends Component
         $this->chapContent = ChapContent::find($id);
         $this->book = Book::find($bookId);
         // $this->chaps = $book->chaps()->orderBy('order_by')->get();
-        // $comments = $chap->comments;
+        $comments = $this->book->comments->whereNull('parent_id');
 
         // foreach ($comments as $comment) {
-        //     $comment->user = User::find($comment->user_id);
+        //     $user = User::find($comment->user_id);
+        //     // dd($user->name);
+        //     // $comment->user->id = $comment->user_id;
+        //     $comment->user = (object) array(
+        //         'id' => $comment->user_id,
+        //         'name' => $user->name
+        //     );
         // }
+
+        $this->comments = $comments;
+        // dd($comments);
     }
 
     public function render()

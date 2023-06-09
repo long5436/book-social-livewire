@@ -48,6 +48,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsToMany(Role::class);
     }
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
     public function authorizeRoles($roles)
     {
         if (is_array($roles)) {

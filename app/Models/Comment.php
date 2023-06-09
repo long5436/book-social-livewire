@@ -10,15 +10,20 @@ class Comment extends Model
     use HasFactory;
 
     protected $fillable = [
-        'chap_id',
+        'book_id',
         'parent_id',
         'user_id',
-        'like_count',
+        'like',
         'content'
     ];
 
-    public function chaps()
+    public function books()
     {
-        return $this->belongsTo(Chap::class);
+        return $this->belongsTo(Book::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

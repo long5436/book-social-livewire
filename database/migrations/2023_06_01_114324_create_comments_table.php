@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->integer('chap_id');
+            $table->integer('book_id');
             $table->integer('parent_id')->nullable(true);
             $table->integer('user_id');
-            $table->integer('like_count');
+            $table->json('like')->nullable();
             $table->boolean('delete')->nullable();
             $table->string('content');
             $table->timestamps();
