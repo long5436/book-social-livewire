@@ -30,4 +30,5 @@
         <livewire:components.comments :chap="$chap" :comments="$comments" />
     </div>
 
+    <livewire:components.noti-rating />
 </div>
