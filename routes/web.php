@@ -2,7 +2,9 @@
 
 use App\Http\Livewire\Pages\AdminLogin;
 use App\Http\Livewire\Pages\Book\BookAbout;
+use App\Http\Livewire\Pages\Book\BookCate;
 use App\Http\Livewire\Pages\Book\BookChap;
+use App\Http\Livewire\Pages\Book\BookSearch;
 use App\Http\Livewire\Pages\Book\Home;
 use App\Http\Livewire\Pages\Login;
 use App\Http\Livewire\Pages\Register;
@@ -30,6 +32,8 @@ Route::group([], function () {
     Route::get('/', Home::class);
     Route::get('/sach/{slug}', BookAbout::class)->name('book.about');
     Route::get('/sach/{bookSlug}/{slug}', BookChap::class)->name('book.chap');
+    Route::get('/the-loai/{slug}', BookCate::class)->name('book.cate');
+    Route::get('/tim-kiem-sach', BookSearch::class)->name('book.search');
 });
 
 

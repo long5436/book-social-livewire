@@ -18,9 +18,4 @@ class Chap extends Model
     {
         return $this->hasMany(ChapContent::class);
     }
-
-    public function comments()
-    {
-        return $this->hasMany(Comment::class);
-    }
 }

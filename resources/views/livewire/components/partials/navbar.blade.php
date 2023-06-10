@@ -10,7 +10,7 @@
                     </a>
                 </div>
                 <div class="hidden md:flex">
-                    <form
+                    <form method="GET" action="{{ route('book.search') }}"
                         class="border border-slate-300 rounded-full px-3 flex items-center me-6 focus-within:border-primary"
                         {{-- action="{{ route('book.search') }}" method="GET" --}}>
                         <i class="fa-solid fa-magnifying-glass text-gray-400"></i>
@@ -47,6 +47,12 @@
                                         class="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
                                         role="menuitem">
                                         Tài khoản
+                                    </a>
+
+                                    <a href="#"
+                                        class="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                                        role="menuitem">
+                                        Đánh dấu
                                     </a>
 
                                     <button type="button" wire:click="btnLogout"
@@ -111,6 +117,11 @@
                                 class="flex items-center gap-2 rounded-lg bg-gray-100 px-4 py-2 text-gray-700 hover:bg-green-700/20">
 
                                 <span class=""> Tài khoản </span>
+                            </a>
+                            <a href="#"
+                                class="flex items-center gap-2 rounded-lg bg-gray-100 px-4 py-2 text-gray-700 hover:bg-green-700/20">
+
+                                <span class=""> Đánh dấu </span>
                             </a>
                             <a href="#" wire:click="btnLogout"
                                 class="flex

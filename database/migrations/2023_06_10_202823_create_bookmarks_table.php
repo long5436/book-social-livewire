@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('chap_contents', function (Blueprint $table) {
+        Schema::create('bookmarks', function (Blueprint $table) {
             $table->id();
-            $table->string("chap_id");
-            $table->longText("content");
-            $table->boolean('is_deleted')->nullable();
+            $table->integer('user_id');
+            $table->integer('book_id');
+            $table->integer('chap');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('chap_contents');
+        Schema::dropIfExists('bookmarks');
     }
 };

@@ -2,22 +2,22 @@
 
 namespace App\Models;
 
-use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class Bookmark extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'slug',
-        'is_deleted'
+        'user_id',
+        'book_id',
+        'chap'
     ];
 
-    public function books()
+
+    public function user()
     {
-        return $this->belongsToMany(Book::class);
+        return $this->belongsTo(User::class);
     }
 }
