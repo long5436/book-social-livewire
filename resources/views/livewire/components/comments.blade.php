@@ -43,7 +43,7 @@
                             @endif
                         </a>
 
-                        <div>
+                        <div class="">
                             <p>{{ $item->content }}</p>
                         </div>
                         <div class="pb-2 pt-1 relative">

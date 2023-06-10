@@ -73,6 +73,13 @@
                                 </span>
                             </div>
                         </div>
+                        @if (!Auth::check())
+                            <div>
+                                <div class="bg-white/20 inline-block px-4 py-1 rounded-full">
+                                    <p>Bạn cần phải đăng nhập để có thể đọc sách</p>
+                                </div>
+                            </div>
+                        @endif
                         <div class="flex gap-3 pt-4">
 
 

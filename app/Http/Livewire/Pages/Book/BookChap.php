@@ -7,6 +7,7 @@ use App\Models\ChapContent;
 use App\Models\Book;
 use App\Models\User;
 use App\Models\Chap;
+use Auth;
 
 class BookChap extends Component
 {
@@ -19,6 +20,12 @@ class BookChap extends Component
 
     public function mount($bookSlug, $slug)
     {
+        // kiem tra dang nhap
+        if (!Auth::check()) {
+            redirect()->route('login');
+            return;
+        }
+
         $str = (explode("-", $bookSlug));
         $bookId = $str[count($str) - 1];
 
