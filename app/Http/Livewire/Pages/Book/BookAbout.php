@@ -18,6 +18,8 @@ class BookAbout extends Component
     public $totalChaps;
     public $chapFirst;
     public $myRating = [];
+    public $isShowNoti;
+    public $comments;
 
     public function mount($slug)
     {
@@ -35,6 +37,8 @@ class BookAbout extends Component
         $this->totalPages = $chaps->lastPage();
         $this->totalChaps = $book->chaps()->count();
         $this->chapFirst = $book->chaps()->where('order_by', 1)->first();
+        $this->comments = $this->book->comments->whereNull('parent_id')->whereNull('delete', true);
+
 
         if (Auth::check()) {
             $this->myRating = $book->ratings->where('user_id', Auth::user()->id);
@@ -91,6 +95,10 @@ class BookAbout extends Component
                     $this->myRating = array($newRating);
                 }
             }
+
+            $this->isShowNoti = true;
+        } else {
+            redirect()->route('login');
         }
     }
 }

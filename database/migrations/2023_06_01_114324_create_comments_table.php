@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('parent_id')->nullable(true);
             $table->integer('user_id');
             $table->json('like')->nullable();
-            $table->boolean('delete')->nullable();
+            $table->boolean('is_deleted')->nullable();
             $table->string('content');
             $table->timestamps();
         });

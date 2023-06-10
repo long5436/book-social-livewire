@@ -27,8 +27,7 @@
     </div>
 
     <div class="max-w-screen-lg mx-auto pt-24 px-6 ">
-        <livewire:components.comments :chap="$chap" :comments="$comments" />
+        <livewire:components.comments :book="$book" :comments="$comments" />
     </div>
 
-    <livewire:components.noti-rating />
 </div>

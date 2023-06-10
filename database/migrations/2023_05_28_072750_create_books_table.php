@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('photo');
             $table->integer('read_count');
             $table->longText('description');
-            $table->boolean('delete')->nullable();
+            $table->boolean('is_deleted')->nullable();
             $table->timestamps();
         });
     }

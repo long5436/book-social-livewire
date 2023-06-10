@@ -1,7 +1,10 @@
 import "./bootstrap";
 
-const bookCommentBtns: NodeListOf<HTMLButtonElement> = document.querySelectorAll(".book-comment-btn");
-const bookCommentBlock: NodeListOf<HTMLDivElement> = document.querySelectorAll(".book-comment-block");
+const $ = document.querySelector.bind(document);
+const $$ = document.querySelectorAll.bind(document);
+
+const bookCommentBtns: NodeListOf<HTMLButtonElement> = $$(".book-comment-btn");
+const bookCommentBlock: NodeListOf<HTMLDivElement> = $$(".book-comment-block");
 
 if (bookCommentBtns) {
     bookCommentBtns.forEach((item: HTMLButtonElement, index: number) => {

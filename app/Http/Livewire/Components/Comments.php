@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Lang;
 
 class Comments extends Component
 {
-    public $chap;
+    public $book;
     public $content;
     public $contentRep;
     public $comments;
@@ -49,7 +49,12 @@ class Comments extends Component
 
     public function getSubCommentCount($id)
     {
-        return Comment::where('parent_id', $id)->count();
+        return Comment::where('parent_id', $id)
+            ->where(function ($query) {
+                $query->where('is_deleted', false)
+                    ->orWhereNull('is_deleted');
+            })
+            ->count();
     }
 
     public function btnComment($parentId)
@@ -60,7 +65,7 @@ class Comments extends Component
         if (Auth::check()) {
 
             $newComment = Comment::create([
-                'book_id' => $this->chap->book_id,
+                'book_id' => $this->book->id,
                 'content' => $parentId ? $this->contentRep : $this->content,
                 'parent_id' => $parentId ? $parentId : null,
                 'user_id' => Auth::user()->id,
@@ -104,7 +109,7 @@ class Comments extends Component
     {
         $comment = Comment::find($id);
         if ($comment) {
-            $comment->delete = true;
+            $comment->is_deleted = true;
 
             if ($comment->save()) {
                 $this->comments->forget($index);
@@ -114,7 +119,13 @@ class Comments extends Component
 
     public function loadSubComments($id, $index)
     {
-        $subComment = Comment::where('parent_id', $id)->orderBy('created_at', 'desc')->get();
+        $subComment = Comment::where('parent_id', $id)
+            ->where(function ($query) {
+                $query->where('is_deleted', false)
+                    ->orWhereNull('is_deleted');
+            })
+            ->orderBy('created_at', 'desc')
+            ->get();
         // dd($subComment);
         $this->comments[$index]->sub =  $subComment;
     }

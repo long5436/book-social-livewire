@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string("chap_id");
             $table->longText("content");
-            $table->boolean('delete')->nullable();
+            $table->boolean('is_deleted')->nullable();
             $table->timestamps();
         });
     }

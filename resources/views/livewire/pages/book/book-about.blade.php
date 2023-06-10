@@ -127,7 +127,16 @@
                 <livewire:components.pagination :currentPage="$page" :totalPage="$totalPages" />
 
             </div>
+
+            <div class="pt-24 px-6 ">
+                <livewire:components.comments :book="$book" :comments="$comments" />
+            </div>
         </div>
     </div>
+
+
+    @if ($isShowNoti)
+        <livewire:components.noti-rating :isShow="$isShowNoti" />
+    @endif
 
 </div>

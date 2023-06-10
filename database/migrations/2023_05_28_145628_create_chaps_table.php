@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug');
             $table->integer('order_by');
-            $table->boolean('delete')->nullable();
+            $table->boolean('is_deleted')->nullable();
             $table->timestamps();
         });
     }

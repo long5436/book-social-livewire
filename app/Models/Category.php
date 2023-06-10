@@ -13,7 +13,7 @@ class Category extends Model
     protected $fillable = [
         'name',
         'slug',
-        'delete'
+        'is_deleted'
     ];
 
     public function books()

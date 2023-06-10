@@ -159,7 +159,7 @@
                         {{-- start sub --}}
                         <div>
                             @if ($item->sub)
-                                @foreach ($item->sub->reverse() as $index => $item)
+                                @foreach ($item->sub as $index => $item)
                                     @php
                                         $user = $item
                                             ->user()
