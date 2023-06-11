@@ -36,7 +36,7 @@ class BookChap extends Component
         $this->chap = Chap::find($id);
         $this->chapContent = ChapContent::find($id);
         // $this->chaps = $book->chaps()->orderBy('order_by')->get();
-        $comments = $this->book->comments->whereNull('parent_id')->whereNull('is_deleted', true);
+        $comments = $book->comments->whereNull('parent_id')->whereNull('is_deleted', true);
 
         // foreach ($comments as $comment) {
         //     $user = User::find($comment->user_id);

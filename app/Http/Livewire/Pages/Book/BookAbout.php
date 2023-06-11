@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Pages\Book;
 
 use App\Models\Book;
+use App\Models\Bookmark;
 use App\Models\Rating;
 use Auth;
 use Livewire\Component;
@@ -20,6 +21,7 @@ class BookAbout extends Component
     public $myRating = [];
     public $isShowNoti;
     public $comments;
+    public $isHasBookmark;
 
     public function mount($slug)
     {
@@ -32,17 +34,19 @@ class BookAbout extends Component
             ->orderBy('order_by')
             ->paginate($this->perPage, ['*'], 'page', $this->page);
         $this->chaps = $chaps->getCollection();
-
         $this->book = $book;
         $this->totalPages = $chaps->lastPage();
         $this->totalChaps = $book->chaps()->count();
         $this->chapFirst = $book->chaps()->where('order_by', 1)->first();
         $this->comments = $this->book->comments->whereNull('parent_id')->whereNull('delete', true);
 
-
         if (Auth::check()) {
             $this->myRating = $book->ratings->where('user_id', Auth::user()->id);
             // dd($book->ratings->where('user_id', 1));
+            $bookmark = Auth::user()->bookmarks()->where('book_id', $this->book->id)->get();
+            if ($bookmark->count() > 0) {
+                $this->isHasBookmark = true;
+            }
         }
     }
 
@@ -60,7 +64,6 @@ class BookAbout extends Component
             ->first();
 
         if ($result) {
-
             return intval(round($result->average_rating, 0));
         }
 
@@ -99,6 +102,34 @@ class BookAbout extends Component
             $this->isShowNoti = true;
         } else {
             redirect()->route('login');
+        }
+    }
+
+    public function bookmark()
+    {
+        // dd('clicked');
+        if (Auth::check()) {
+            $bookmark = Bookmark::create([
+                'book_id' => $this->book->id,
+                'user_id' => Auth::user()->id
+            ]);
+
+            if ($bookmark->save()) {
+                $this->isHasBookmark = true;
+            }
+        } else {
+            redirect()->route('login');
+        }
+    }
+
+    public function deleteBookmark()
+    {
+        $bookmark = Auth::user()->bookmarks()->where('book_id', $this->book->id)->get();
+
+        if ($bookmark->count() > 0) {
+            if ($bookmark[0]->delete()) {
+                $this->isHasBookmark = false;
+            }
         }
     }
 }
