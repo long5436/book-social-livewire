@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->integer('user_id');
             $table->integer('book_id');
-            $table->integer('chap');
+            // $table->integer('chap');
             $table->timestamps();
         });
     }

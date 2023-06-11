@@ -1,6 +1,7 @@
 # Run app
 
 ```sh
+php artisan storage:link
 php artisan serve
 yarn dev
 ```
