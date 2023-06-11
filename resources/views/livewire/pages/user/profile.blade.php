@@ -70,12 +70,13 @@
             <div class="py-2">
                 <h2 class="py-2">Ảnh đại diện</h2>
                 <div class="flex gap-5">
-                    @if ($photo)
-                        @if (!$tempPhoto)
-                            <img class='w-40 h-40 rounded-full' src="{{ asset('images/avt.jpg') }}" alt="avata">
-                        @else
-                            <img class='w-40 h-40 rounded-full' src="{{ $tempPhoto }}" alt="avata">
-                        @endif
+                    @if ($photoName)
+                        <img class='w-40 h-40 rounded-full border' src="{{ asset('imgs/user/' . $photoName) }}"
+                            alt="avata" onerror="this.src='{{ asset('images/user_no_img.jpg') }}'">
+                    @endif
+
+                    @if ($tempPhoto)
+                        <img class='w-40 h-40 rounded-full border' src="{{ $tempPhoto }}" alt="avata">
                     @endif
                     <form class="flex items-center justify-center w-40 h-40" enctype="multipart/form-data">
                         <label for="dropzone-file"
@@ -112,12 +113,11 @@
 
             <div class="py-5 mt-5 border-t border-black/10">
                 <button wire:click="toggleShowPassVerify"
-                    class="inline-block bg-primary text-white px-8 py-2 rounded-lg text-xl shadow-lg hover:opacity-90">
+                    class="inline-block bg-primary text-white px-8 py-2 rounded-lg text-xl hover:opacity-90">
                     Lưu thay đổi
                 </button>
 
-                <button
-                    class="inline-block bg-primary text-white px-8 py-2 rounded-lg text-xl shadow-lg hover:opacity-90 ms-5">
+                <button class="inline-block bg-primary text-white px-8 py-2 rounded-lg text-xl hover:opacity-90 ms-5">
                     Đổi mật khẩu
                 </button>
             </div>

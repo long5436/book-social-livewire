@@ -19,6 +19,7 @@ class Profile extends Component
     public $pass;
     public $showVerifyPass;
     public $tempPhoto;
+    public $photoName;
 
 
     public function mount()
@@ -26,13 +27,14 @@ class Profile extends Component
         $user = Auth::user();
         $this->name = $user->name;
         $this->email = $user->email;
-        $this->photo = $user->photo;
+        $this->photoName = $user->photo;
         $this->primaryColor = $user->primary_color;
     }
 
     public function updatedPhoto()
     {
         $this->tempPhoto = $this->photo->temporaryUrl();
+        $this->photoName = '';
     }
 
     public function render()
@@ -72,9 +74,9 @@ class Profile extends Component
             if (isset($this->photo)) {
 
                 $filename = time() . '.' . $this->photo->getClientOriginalExtension();
-                $pathFile = 'images/user';
+                $pathFile = 'public/images/user';
 
-                $this->photo->move($pathFile, $filename);
+                $this->photo->storeAs($pathFile, $filename);
                 $user->photo = $filename;
             }
 

@@ -33,9 +33,14 @@
                         @if (isset(Auth::user()->name))
                             <div class="cursor-pointer relative group">
 
-                                {{-- <img src="" alt=""> --}}
-                                <i
-                                    class="fa-solid fa-user w-8 h-8 rounded-full text-center leading-8 bg-gray-100 text-gray-400"></i>
+                                @if (Auth::user()->photo)
+                                    <img src="{{ asset('imgs/user/' . Auth::user()->photo) }}"
+                                        class="w-8 h-8 rounded-full inline-block border" alt="avata"
+                                        onerror="this.src='{{ asset('images/user_no_img.jpg') }}'">
+                                @else
+                                    <i
+                                        class="fa-solid fa-user w-8 h-8 rounded-full text-center leading-8 bg-gray-100 text-gray-400 border"></i>
+                                @endif
                                 <span class="ms-2 pe-2">{{ Auth::user()->name }}</span>
                                 <i class="fa-solid fa-chevron-down text-gray-400 "></i>
 
@@ -43,20 +48,20 @@
                                     class="p-2 absolute end-0 invisible group-hover:visible transition duration-500 bg-white border rounded-md">
 
 
-                                    <a href="#"
-                                        class="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                                    <a href="{{ route('user.profile') }}"
+                                        class="block rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-50 hover:text-gray-700 border border-transparent hover:border-black/10"
                                         role="menuitem">
                                         Tài khoản
                                     </a>
 
-                                    <a href="#"
-                                        class="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                                    <a href="{{ route('book.bookmark') }}"
+                                        class="block rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-50 hover:text-gray-700 border border-transparent hover:border-black/10"
                                         role="menuitem">
                                         Đánh dấu
                                     </a>
 
                                     <button type="button" wire:click="btnLogout"
-                                        class="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                                        class="block rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-50 hover:text-gray-700 border border-transparent hover:border-black/10"
                                         role="menuitem">
                                         Đăng xuất
                                     </button>
@@ -104,8 +109,14 @@
                         <div class="flex items-center mt-4">
                             <div class="cursor-pointer relative group">
 
-                                <i
-                                    class="fa-solid fa-user w-8 h-8 rounded-full text-center leading-8 bg-gray-100 text-gray-400"></i>
+                                @if (Auth::user()->photo)
+                                    <img src="{{ asset('imgs/user/' . Auth::user()->photo) }}"
+                                        class="w-8 h-8 rounded-full inline-block border" alt="avata"
+                                        onerror="this.src='{{ asset('images/user_no_img.jpg') }}'">
+                                @else
+                                    <i
+                                        class="fa-solid fa-user w-8 h-8 rounded-full text-center leading-8 bg-gray-100 text-gray-400 border"></i>
+                                @endif
                                 <span class="ms-2 pe-2">{{ Auth::user()->name }}</span>
 
                             </div>
@@ -113,20 +124,20 @@
 
                         <nav aria-label="Main Nav" class="mt-6 flex flex-col space-y-1">
 
-                            <a href="#"
-                                class="flex items-center gap-2 rounded-lg bg-gray-100 px-4 py-2 text-gray-700 hover:bg-green-700/20">
+                            <a href="{{ route('user.profile') }}"
+                                class="flex items-center gap-2 rounded-lg bg-gray-100 px-4 py-2 text-gray-700 hover:bg-primary/20">
 
                                 <span class=""> Tài khoản </span>
                             </a>
-                            <a href="#"
-                                class="flex items-center gap-2 rounded-lg bg-gray-100 px-4 py-2 text-gray-700 hover:bg-green-700/20">
+                            <a href="{{ route('book.bookmark') }}"
+                                class="flex items-center gap-2 rounded-lg bg-gray-100 px-4 py-2 text-gray-700 hover:bg-primary/20">
 
                                 <span class=""> Đánh dấu </span>
                             </a>
                             <a href="#" wire:click="btnLogout"
                                 class="flex
                                 items-center gap-2 rounded-lg bg-gray-100 px-4 py-2 text-gray-700
-                                hover:bg-green-700/20">
+                                hover:bg-primary/20">
 
                                 <span class=""> Đăng xuất </span>
                             </a>
