@@ -63,7 +63,7 @@
                             <div class="inline-block border-e border-white/75 pe-6">
                                 <h4>Đánh dấu</h4>
                                 <i class="fa-solid fa-bookmark"></i>
-                                <span class="ms-2 font-medium">0</span>
+                                <span class="ms-2 font-medium">{{ $book->bookmarks->count() }}</span>
                             </div>
                             <div class="inline-block">
                                 <h4>Nguồn</h4>
@@ -76,7 +76,7 @@
                         @if (!Auth::check())
                             <div>
                                 <div class="bg-white/20 inline-block px-4 py-1 rounded-full">
-                                    <p>Bạn cần phải đăng nhập để có thể đọc sách</p>
+                                    <p>Bạn cần phải đăng nhập để có thể đọc sách và đánh dấu sách</p>
                                 </div>
                             </div>
                         @endif
@@ -91,10 +91,19 @@
                                     Đọc ngay
                                 </a>
                             @endif
-                            <a href="#"
-                                class="inline-block bg-primary text-white px-8 py-2 rounded-lg text-xl shadow-lg hover:opacity-90">
-                                Đánh dấu
-                            </a>
+                            @if (!$isHasBookmark)
+                                <a href="javascript:void(0)" wire:click="bookmark"
+                                    class="inline-block bg-primary text-white px-8 py-2 rounded-lg text-xl shadow-lg hover:opacity-90">
+                                    Đánh dấu
+                                </a>
+                            @endif
+
+                            @if (Auth::check() && $isHasBookmark)
+                                <a href="javascript:void(0)" wire:click="deleteBookmark"
+                                    class="inline-block bg-primary text-white px-8 py-2 rounded-lg text-xl shadow-lg hover:opacity-90">
+                                    Huỷ đánh dấu
+                                </a>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -140,7 +149,6 @@
             </div>
         </div>
     </div>
-
 
     @if ($isShowNoti)
         <livewire:components.noti-rating :isShow="$isShowNoti" />
