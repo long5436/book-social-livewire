@@ -20,13 +20,32 @@
                         <p class="pb-2">Tác giả: Tên tác giả</p>
 
                         <div class="pb-1 text-xl">
-                            <i class="fa-solid fa-star text-yellow-500"></i>
-                            <i class="fa-solid fa-star text-yellow-500"></i>
-                            <i class="fa-solid fa-star text-yellow-500"></i>
-                            <i class="fa-solid fa-star text-yellow-500"></i>
-                            <i class="fa-solid fa-star text-white/75"></i>
+                            <i class="fa-solid fa-star cursor-pointer {{ $this->getAverage() > 0 ? 'text-yellow-500' : 'text-white/50' }}"
+                                wire:click="rating(1)"></i>
+                            <i class="fa-solid fa-star cursor-pointer {{ $this->getAverage() > 1 ? 'text-yellow-500' : 'text-white/50' }}"
+                                wire:click="rating(2)"></i>
+                            <i class="fa-solid fa-star cursor-pointer {{ $this->getAverage() > 2 ? 'text-yellow-500' : 'text-white/50' }}"
+                                wire:click="rating(3)"></i>
+                            <i class="fa-solid fa-star cursor-pointer {{ $this->getAverage() > 3 ? 'text-yellow-500' : 'text-white/50' }}"
+                                wire:click="rating(4)"></i>
+                            <i class="fa-solid fa-star cursor-pointer {{ $this->getAverage() > 4 ? 'text-yellow-500' : 'text-white/50' }}"
+                                wire:click="rating(5)"></i>
                             <p class="text-base">
-                                Đánh giá: 2/5 sao từ 125 lượt đánh giá. Để đánh giá vui lòng đăng nhập
+                                Đánh giá: {{ $this->getAverage() }}/5 sao từ {{ $book->ratings->count() }} lượt đánh
+                                giá. <span>
+                                    @if (!Auth::check())
+                                        Để đánh giá vui lòng đăng nhập
+                                    @else
+                                        @if (count($myRating) > 0)
+                                            <span>Bạn đã đánh giá {{ $myRating[0]->rating }} sao cho cuốn sách
+                                                này</span>
+                                        @else
+                                            <span>
+                                                Đánh giá sách bằng cách bấm vào các ngôi sao
+                                            </span>
+                                        @endif
+                                    @endif
+                                </span>
                             </p>
                         </div>
                         <p class="py-2">Thể loại: {{ $book->categories[0]->name }}</p>
@@ -39,12 +58,12 @@
                             <div class="inline-block  md:border-e border-white/75 pe-6">
                                 <h4>Lượt đọc</h4>
                                 <i class="fa-solid fa-eye"></i>
-                                <span class="ms-2 font-medium">{{ $chaps->count() }}</span>
+                                <span class="ms-2 font-medium">{{ $book->read_count }}</span>
                             </div>
                             <div class="inline-block border-e border-white/75 pe-6">
                                 <h4>Đánh dấu</h4>
                                 <i class="fa-solid fa-bookmark"></i>
-                                <span class="ms-2 font-medium">{{ $chaps->count() }}</span>
+                                <span class="ms-2 font-medium">0</span>
                             </div>
                             <div class="inline-block">
                                 <h4>Nguồn</h4>
@@ -54,6 +73,13 @@
                                 </span>
                             </div>
                         </div>
+                        @if (!Auth::check())
+                            <div>
+                                <div class="bg-white/20 inline-block px-4 py-1 rounded-full">
+                                    <p>Bạn cần phải đăng nhập để có thể đọc sách</p>
+                                </div>
+                            </div>
+                        @endif
                         <div class="flex gap-3 pt-4">
 
 
@@ -108,7 +134,16 @@
                 <livewire:components.pagination :currentPage="$page" :totalPage="$totalPages" />
 
             </div>
+
+            <div class="pt-24 px-6 ">
+                <livewire:components.comments :book="$book" :comments="$comments" />
+            </div>
         </div>
     </div>
+
+
+    @if ($isShowNoti)
+        <livewire:components.noti-rating :isShow="$isShowNoti" />
+    @endif
 
 </div>

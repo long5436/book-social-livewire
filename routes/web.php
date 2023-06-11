@@ -3,7 +3,9 @@
 use App\Http\Livewire\FooterComponent;
 use App\Http\Livewire\Pages\AdminLogin;
 use App\Http\Livewire\Pages\Book\BookAbout;
+use App\Http\Livewire\Pages\Book\BookCate;
 use App\Http\Livewire\Pages\Book\BookChap;
+use App\Http\Livewire\Pages\Book\BookSearch;
 use App\Http\Livewire\Pages\Book\Home;
 use App\Http\Livewire\Pages\Book\Postblog;
 use App\Http\Livewire\Pages\Login;
@@ -37,6 +39,8 @@ Route::group([], function () {
     Route::get('/sach/{bookSlug}/{slug}', BookChap::class)->name('book.chap');
     Route::get('/profileuser', Profileuser::class)->name('profileuser');
     Route::get('/postblog', Postblog::class)->name('postblog');
+    Route::get('/the-loai/{slug}', BookCate::class)->name('book.cate');
+    Route::get('/tim-kiem-sach', BookSearch::class)->name('book.search');
 });
 
 
