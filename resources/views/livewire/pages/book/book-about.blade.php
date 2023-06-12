@@ -1,7 +1,8 @@
 <div>
+    <livewire:components.meta :data="$book" />
     <div class="mx-auto lg:px-8 pt-8 overflow-x-clip">
         {{-- max-w-screen-xl  --}}
-        <div class="w-full px-6 md:px-0 bg-no-repeat relative">
+        <div class="w-full px-0 md:px-0 bg-no-repeat relative">
             <div class="absolute inset-0 -top-32 bg-cover blur-3xl z-0 scale-110 after:bg-black/50 after:inset-0 after:absolute"
                 style="background-image: url('{{ asset('imgs/books/' . $book->photo) }}')">
 
@@ -144,7 +145,7 @@
 
             </div>
 
-            <div class="pt-24 px-6 ">
+            <div class="pt-24 px-0 ">
                 <livewire:components.comments :book="$book" :comments="$comments" />
             </div>
         </div>

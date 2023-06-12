@@ -1,4 +1,5 @@
-<div class="max-w-screen-xl mx-auto md:px-8 xl:px-0 pt-8 ">
+<div class="max-w-screen-xl mx-auto md:px-8 2xl:px-0 pt-8 ">
+    <livewire:components.meta />
 
     <div class="block md:flex">
         <div class="w-full px-0 md:w-9/12">
@@ -29,10 +30,10 @@
             </div>
             <div class="mb-5">
                 <h3 class="text-2xl font-medium">Pages</h3>
-                <li>                  
-                    <a title="Bản quyền nội dung" href="#" class="link-default">Bản quyền nội dung</a>           
+                <li>
+                    <a title="Bản quyền nội dung" href="#" class="link-default">Bản quyền nội dung</a>
                 </li>
-                <li>           
+                <li>
                     <a title="Qui định sử dụng" href="#" class="link-default">Qui định sử dụng</a>
                 </li>
                 <li>
@@ -42,7 +43,7 @@
             </div>
             <div class="mb-5">
                 <h3 class="text-2xl font-medium">Bài Viết</h3>
-             
+
             </div>
             <div class="mb-5">
                 <h3 class="text-2xl font-medium">Theo dỏi</h3>
