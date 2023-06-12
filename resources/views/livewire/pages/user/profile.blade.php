@@ -117,9 +117,10 @@
                     Lưu thay đổi
                 </button>
 
-                <button class="inline-block bg-primary text-white px-8 py-2 rounded-lg text-xl hover:opacity-90 ms-5">
+                <a href="{{ route('user.changepass') }}"
+                    class="inline-block bg-primary text-white px-8 py-2 rounded-lg text-xl hover:opacity-90 ms-5">
                     Đổi mật khẩu
-                </button>
+                </a>
             </div>
         </div>
     </div>

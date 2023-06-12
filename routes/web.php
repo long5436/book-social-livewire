@@ -13,6 +13,7 @@ use App\Http\Livewire\Pages\Login;
 use App\Http\Livewire\Pages\PostBookmark;
 use App\Http\Livewire\Pages\Profileuser;
 use App\Http\Livewire\Pages\Register;
+use App\Http\Livewire\Pages\User\ChangePassword;
 use App\Http\Livewire\Pages\User\Profile;
 use Illuminate\Support\Facades\Route;
 
@@ -47,6 +48,7 @@ Route::get('/tim-kiem-sach', BookSearch::class)->name('book.search');
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/danh-dau', Bookmark::class)->name('book.bookmark');
     Route::get('/trang-ca-nhan', Profile::class)->name('user.profile');
+    Route::get('/doi-mat-khau', ChangePassword::class)->name('user.changepass');
 });
 
 
