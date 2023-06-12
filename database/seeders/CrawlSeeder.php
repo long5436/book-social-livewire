@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Rating;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -67,7 +68,7 @@ class CrawlSeeder extends Seeder
                         'slug' => Str::of($value->name)->slug('-'),
                         'description' => $description,
                         'photo' => $value->photo,
-                        'read_count' => 0,
+                        'read_count' => rand(1, 20000),
                         'created_at' => Carbon::now()->addSeconds($indexIdBook)->format('Y-m-d H:i:s')
                     ]);
 

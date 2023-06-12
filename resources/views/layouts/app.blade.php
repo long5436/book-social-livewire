@@ -13,7 +13,11 @@
 
 </head>
 
-<body class="antialiased bg-test">
+<body class="antialiased bg-test"
+    @if (Auth::check()) @if (Auth::user()->primary_color)
+    style="--color-primary: {{ Auth::user()->primary_color }} @endif
+    @endif
+    ">
     <livewire:components.partials.navbar />
     {{-- @livewire('components.partials.navbar') --}}
 
