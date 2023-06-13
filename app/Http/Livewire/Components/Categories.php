@@ -11,7 +11,8 @@ class Categories extends Component
 
     public function mount()
     {
-        $this->categories = Category::all();
+        $this->categories = Category::where('is_deleted', false)
+            ->orWhereNull('is_deleted')->get();
     }
 
     public function render()

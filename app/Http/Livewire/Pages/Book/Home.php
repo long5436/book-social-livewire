@@ -16,6 +16,8 @@ class Home extends Component
     {
         $this->page = request()->get('page', 1);
         $books = Book::orderBy('created_at', 'desc')
+            ->where('is_deleted', false)
+            ->orWhereNull('is_deleted')
             ->paginate($this->perPage, ['*'], 'page', $this->page);
 
         $this->booksNew = $books->getCollection();

@@ -132,7 +132,8 @@ class BookAbout extends Component
 
     public function deleteBookmark()
     {
-        $bookmark = Auth::user()->bookmarks()->where('book_id', $this->book->id)->get();
+        $bookmark = Auth::user()->bookmarks()->where('book_id', $this->book->id)->where('is_deleted', false)
+            ->orWhereNull('is_deleted')->get();
 
         if ($bookmark->count() > 0) {
             if ($bookmark[0]->delete()) {

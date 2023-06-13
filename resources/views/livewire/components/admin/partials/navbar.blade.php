@@ -15,7 +15,16 @@
 
                 <div class="relative text-sm">
                     <button id="userButton" class="flex items-center focus:outline-none mr-3">
-                        <img class="w-8 h-8 rounded-full mr-4" src="http://i.pravatar.cc/300" alt="Avatar of User">
+                        <div class="me-3">
+                            @if (Auth::user()->photo)
+                                <img src="{{ asset('imgs/user/' . Auth::user()->photo) }}"
+                                    class="w-8 h-8 rounded-full inline-block border" alt="avata"
+                                    onerror="this.src='{{ asset('images/user_no_img.jpg') }}'">
+                            @else
+                                <i
+                                    class="fa-solid fa-user w-8 h-8 rounded-full text-center leading-8 bg-gray-100 text-gray-400 border"></i>
+                            @endif
+                        </div>
                         <span class="hidden md:inline-block">{{ Auth::user()->name }}</span>
                         <svg class="pl-2 h-2" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129"
                             xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 129 129">

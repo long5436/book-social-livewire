@@ -21,7 +21,8 @@ class BookCate extends Component
 
         $this->page = request()->get('page', 1);
         $this->cate = Category::find($id);
-        $books = $this->cate->books()->orderBy('created_at', 'desc')->paginate($this->perPage, ['*'], 'page', $this->page);
+        $books = $this->cate->books()->orderBy('created_at', 'desc')->where('is_deleted', false)
+            ->orWhereNull('is_deleted')->paginate($this->perPage, ['*'], 'page', $this->page);
         // dd($books);
         $this->books = $books->getCollection();
         $this->totalPages = $books->lastPage();

@@ -22,6 +22,8 @@ class BookSearch extends Component
         $books = Book::query()
             ->where('name', 'LIKE', '%' . $this->keyword . '%')
             ->orderBy('created_at', 'desc')
+            ->where('is_deleted', false)
+            ->orWhereNull('is_deleted')
             ->paginate($this->perPage, ['*'], 'page', $this->page);
 
         // dd($books);

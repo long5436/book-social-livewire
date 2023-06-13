@@ -16,7 +16,7 @@
                 <label for="pass" class="block font-medium mb-1">
                     Mật khẩu
                 </label>
-                <input wire:model="password" wire:click="inputClick" type="text" id="pass"
+                <input wire:model="password" wire:click="inputClick" type="password" id="pass"
                     placeholder="Mật khẩu"
                     class="bg-transparent border-2 border-black/20 rounded-lg px-3 py-2  w-full outline-none focus:border-primary ">
             </div>
