@@ -33,10 +33,13 @@
                         </li>
                     </ul> --}}
                     <div class="flex items-center gap-2">
-                        <button
-                            class="bg-primary/20 py-1 px-3 rounded-full text-primary hover:bg-primary/90 hover:text-white">
-                            Viết bài mới
-                        </button>
+
+                        @if (Auth::check())
+                            <a href="{{ route('post.create') }}"
+                                class="bg-primary/20 py-1 px-3 rounded-full text-primary hover:bg-primary/90 hover:text-white">
+                                Viết bài mới
+                            </a>
+                        @endif
 
                         <button
                             class="w-9 h-9 rounded-full text-black/40 hover:bg-primary/90 border border-black/10 hover:text-white">
@@ -149,6 +152,14 @@
 
                                 <span class=""> Đánh dấu </span>
                             </a>
+
+                            @if (Auth::check())
+                                <a href="{{ route('post.create') }}"
+                                    class="flex items-center gap-2 rounded-lg bg-gray-100 px-4 py-2 text-gray-700 hover:bg-primary/20">
+                                    Viết bài mới</span>
+                                </a>
+                            @endif
+
                             <a href="#" wire:click="btnLogout"
                                 class="flex
                                 items-center gap-2 rounded-lg bg-gray-100 px-4 py-2 text-gray-700

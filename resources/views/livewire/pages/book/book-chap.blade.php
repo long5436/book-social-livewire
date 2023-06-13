@@ -39,4 +39,10 @@
         <livewire:components.comments :book="$book" :comments="$comments" />
     </div>
 
+
+    <div class="max-w-screen-lg mx-auto pt-5 px-6 ">
+        <h2 class="font-medium text-2xl py-4">Sách cùng danh mục</h2>
+        <livewire:components.book-grid :books="$cateBooks" />
+    </div>
+
 </div>

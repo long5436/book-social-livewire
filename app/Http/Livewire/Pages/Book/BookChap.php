@@ -5,7 +5,7 @@ namespace App\Http\Livewire\Pages\Book;
 use Livewire\Component;
 use App\Models\ChapContent;
 use App\Models\Book;
-use App\Models\User;
+use App\Models\Category;
 use App\Models\Chap;
 use Auth;
 
@@ -15,6 +15,7 @@ class BookChap extends Component
     public $chap;
     public $chapContent;
     public $book;
+    public $cateBooks;
     // public $chaps;
     public $comments;
 
@@ -54,6 +55,13 @@ class BookChap extends Component
         // tang luot doc nhanh chong bang cach tang sau moi lan load "chap page"
         $book->read_count = $book->read_count + 1;
         $book->save();
+
+        $category = $book->categories[0];
+        $randomBooks = $category->books()
+            ->inRandomOrder()
+            ->limit(12)
+            ->get();
+        $this->cateBooks = $randomBooks;
     }
 
     public function render()
