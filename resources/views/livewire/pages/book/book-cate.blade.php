@@ -1,6 +1,15 @@
-<div class="max-w-screen-xl mx-auto md:px-8 xl:px-0 pt-8 ">
+@php
+    $metaData = $cate;
+    $metaData->description = 'Sách cho thể loại ' . $cate->name;
+    // dd($metaData);
+@endphp
 
-    <div class="max-w-screen-lg mx-auto pt-2 px-6 ">
+
+
+<div class="max-w-screen-lg mx-auto md:px-8 xl:px-0 pt-8 ">
+    <livewire:components.meta :data="$metaData" />
+
+    <div class="">
 
         <div class="px-4 md:px-0">
             <h2 class="font-medium text-2xl py-4">{{ $cate->name }}</h2>

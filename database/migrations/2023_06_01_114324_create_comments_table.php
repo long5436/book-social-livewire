@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->integer('book_id');
+            $table->integer('post_id')->nullable(true);
+            $table->integer('book_id')->nullable(true);
             $table->integer('parent_id')->nullable(true);
             $table->integer('user_id');
             $table->json('like')->nullable();

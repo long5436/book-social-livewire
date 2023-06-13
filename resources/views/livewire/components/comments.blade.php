@@ -28,13 +28,14 @@
                 @php
                     $user = $item
                         ->user()
-                        ->select('id', 'name', 'email')
+                        ->select('id', 'name', 'email', 'photo')
                         ->first();
                 @endphp
 
                 <div class="flex gap-3 pb-1">
                     <div class="w-10 h-10 rounded-full overflow-hidden border border-black/10">
-                        <img class="w-fit h-fit" src="{{ asset('images/avt.jpg') }}" alt="">
+                        <img class="w-fit h-fit" src="{{ asset('imgs/user/' . $user->photo) }}" alt="avatar"
+                            onerror="this.src='{{ asset('images/user_no_img.jpg') }}'">
                     </div>
                     <div class="flex-1">
                         <a href="#" class="font-medium hover:text-primary hover:underline">

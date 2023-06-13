@@ -20,7 +20,9 @@ class DatabaseSeeder extends Seeder
             RoleTableSeeder::class,
             UserTableSeeder::class,
             CrawlSeeder::class,
-            CrawlChapSeeder::class
+            CrawlChapSeeder::class,
+            RatingSeeder::class,
+            PostSeeder::class
         ]);
     }
 }

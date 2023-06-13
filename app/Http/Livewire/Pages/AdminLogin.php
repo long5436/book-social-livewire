@@ -23,7 +23,7 @@ class AdminLogin extends Component
 
     public function render()
     {
-        return view('livewire.pages.admin-login');
+        return view('livewire.pages.admin-login')->layout('layouts.empty');
     }
 
 

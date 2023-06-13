@@ -1,4 +1,5 @@
 <div class="flex justify-center items-center h-screen">
+    <livewire:components.meta />
     <div class="w-96">
         <form wire:submit.prevent="updateProfile" class="bg-white rounded px-8 pt-6 pb-8 mb-4">
             <div class="mb-4 flex items-center">
@@ -17,9 +18,11 @@
                 <label for="avatar" class="block text-gray-700 text-sm font-bold mr-2">Hình ảnh</label>
                 <input type="file" id="avatar" wire:model="avatar"
                     class="bg-transparent border-2 border-black/20 rounded-lg px-3 py-2  w-full outline-none focus:border-primary">
-                    @error('avatar') <span class="error">{{ $message }}</span> @enderror
+                @error('avatar')
+                    <span class="error">{{ $message }}</span>
+                @enderror
             </div>
- 
+
             <div class=" mb-4">Thời gian tham gia: {{ $joinedTime }}</div>
 
             <div class="flex items-center justify-between">
@@ -35,7 +38,7 @@
             </div>
         </form>
         @if (session()->has('message'))
-        <div>{{ session('message') }}</div>
+            <div>{{ session('message') }}</div>
         @endif
     </div>
 </div>

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Rating;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -62,12 +63,16 @@ class CrawlSeeder extends Seeder
                 ]);
 
                 foreach ($jsonData->data as $key => $value) {
+
+                    $randPrice = rand(0, 1);
+
                     DB::table('books')->insert([
                         'name' => $value->name,
                         'slug' => Str::of($value->name)->slug('-'),
                         'description' => $description,
                         'photo' => $value->photo,
-                        'read_count' => 0,
+                        'read_count' => rand(1, 20000),
+                        'price' => ($randPrice == 0) ? null : rand(20000, 300000),
                         'created_at' => Carbon::now()->addSeconds($indexIdBook)->format('Y-m-d H:i:s')
                     ]);
 

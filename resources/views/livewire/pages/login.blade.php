@@ -1,4 +1,5 @@
 <div class="bg-white w-screen h-screen bg-cover">
+    <livewire:components.meta />
     <div class="w-full h-full flex items-center justify-center text-gray-600">
         <form class="py-4 px-4 rounded-2xl  w-96 max-w-full">
             <div class="pb-5">

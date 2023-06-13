@@ -9,6 +9,12 @@ class ChapContent extends Model
 {
     use HasFactory;
 
+
+    protected $fillable = [
+        'content',
+        'chap_id'
+    ];
+
     public function Chap()
     {
         return $this->belongsTo(Chap::class);

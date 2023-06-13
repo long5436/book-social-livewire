@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Lang;
 class Comments extends Component
 {
     public $book;
+    public $post;
     public $content;
     public $contentRep;
     public $comments;
@@ -61,11 +62,15 @@ class Comments extends Component
     {
         // dd($this->content);
         // $this->validate();
+        $postId = $this->post ? $this->post->id : null;
+        $bookId = $this->book ? $this->book->id : null;
+        // dd($postId);
 
         if (Auth::check()) {
 
             $newComment = Comment::create([
-                'book_id' => $this->book->id,
+                'book_id' => $bookId,
+                'post_id' => $postId,
                 'content' => $parentId ? $this->contentRep : $this->content,
                 'parent_id' => $parentId ? $parentId : null,
                 'user_id' => Auth::user()->id,

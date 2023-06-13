@@ -22,6 +22,7 @@ class BookAbout extends Component
     public $isShowNoti;
     public $comments;
     public $isHasBookmark;
+    public $cateBooks;
 
     public function mount($slug)
     {
@@ -48,6 +49,13 @@ class BookAbout extends Component
                 $this->isHasBookmark = true;
             }
         }
+
+        $category = $book->categories[0];
+        $randomBooks = $category->books()
+            ->inRandomOrder()
+            ->limit(12)
+            ->get();
+        $this->cateBooks = $randomBooks;
     }
 
     public function render()
