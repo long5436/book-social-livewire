@@ -1,11 +1,17 @@
+@php
+    
+@endphp
+
+
 <div class="max-w-screen-xl mx-auto md:px-8 xl:px-0 pt-8 ">
+    <livewire:components.meta />
 
     <div class="max-w-screen-lg mx-auto pt-2 px-6 ">
 
         <div class="px-4 md:px-0">
             <h2 class="font-medium text-2xl py-4">Danh sách đánh dấu của bạn</h2>
 
-            <div class="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-6 grid-flow-row gap-5">
+            <div class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 grid-flow-row gap-5">
                 @foreach ($bookmarks as $index => $item)
                     @php
                         $book = $item->book;

@@ -1,6 +1,13 @@
 <?php
 
 use App\Http\Livewire\FooterComponent;
+use App\Http\Livewire\Pages\Admin\Book;
+use App\Http\Livewire\Pages\Admin\BookAdd;
+use App\Http\Livewire\Pages\Admin\BookChap as AdminBookChap;
+use App\Http\Livewire\Pages\Admin\BookChapAdd;
+use App\Http\Livewire\Pages\Admin\BookEdit;
+use App\Http\Livewire\Pages\Admin\Cate;
+use App\Http\Livewire\Pages\Admin\Home as AdminHome;
 use App\Http\Livewire\Pages\AdminLogin;
 use App\Http\Livewire\Pages\Book\BookAbout;
 use App\Http\Livewire\Pages\Book\BookCate;
@@ -10,6 +17,8 @@ use App\Http\Livewire\Pages\Book\BookSearch;
 use App\Http\Livewire\Pages\Book\Home;
 use App\Http\Livewire\Pages\Book\Postblog;
 use App\Http\Livewire\Pages\Login;
+use App\Http\Livewire\Pages\Post\CreatePost;
+use App\Http\Livewire\Pages\Post\PostView;
 use App\Http\Livewire\Pages\PostBookmark;
 use App\Http\Livewire\Pages\Profileuser;
 use App\Http\Livewire\Pages\Register;
@@ -49,13 +58,20 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/danh-dau', Bookmark::class)->name('book.bookmark');
     Route::get('/trang-ca-nhan', Profile::class)->name('user.profile');
     Route::get('/doi-mat-khau', ChangePassword::class)->name('user.changepass');
+
+    Route::get('/bai-viet-moi', CreatePost::class)->name('post.create');
+    Route::get('/bai-viet/{slug}', PostView::class)->name('post.view');
 });
 
 
 
 // admin
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
-    Route::get('', function () {
-        return view('admin');
-    })->name('admin.home');
+    Route::get('', AdminHome::class)->name('admin.home');
+    Route::get('/cate', Cate::class)->name('admin.cate');
+    Route::get('/book', Book::class)->name('admin.book');
+    Route::get('/book/edit/{id}', BookEdit::class)->name('admin.book.edit');
+    Route::get('/book/chap/edit/{id}', AdminBookChap::class)->name('admin.book.chap.edit');
+    Route::get('/book/add', BookAdd::class)->name('admin.book.add');
+    Route::get('/book/chap/add/{book_id}', BookChapAdd::class)->name('admin.book.chap.add');
 });

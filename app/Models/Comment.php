@@ -11,6 +11,7 @@ class Comment extends Model
 
     protected $fillable = [
         'book_id',
+        'post_id',
         'parent_id',
         'user_id',
         'like',
@@ -20,6 +21,11 @@ class Comment extends Model
     public function books()
     {
         return $this->belongsTo(Book::class);
+    }
+
+    public function posts()
+    {
+        return $this->belongsTo(Post::class);
     }
 
     public function user()

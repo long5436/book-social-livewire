@@ -9,6 +9,16 @@ class Book extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'slug',
+        'is_deleted',
+        'description',
+        'price',
+        'read_count',
+        'photo'
+    ];
+
     public function categories()
     {
         return $this->belongsToMany(Category::class);
@@ -32,5 +42,10 @@ class Book extends Model
     public function bookmarks()
     {
         return $this->hasMany(Bookmark::class);
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
     }
 }
