@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Book;
 use App\Models\Post;
 use Auth;
+use Illuminate\Support\Str;
 
 class CreatePost extends Component
 {
@@ -69,6 +70,7 @@ class CreatePost extends Component
         $post = Post::create([
             'user_id' => Auth::user()->id,
             'book_id' => $this->bookSelected['id'],
+            'slug' =>   Str::of($this->name)->slug('-'),
             'name' => $this->name,
             'content' => $this->content,
         ]);

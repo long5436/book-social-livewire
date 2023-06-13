@@ -24,7 +24,7 @@
                         @endif
                     </div>
                     <div>
-                        <a href="#">
+                        <a href="{{ route('post.view', $post->slug . '-' . $post->id) }}">
                             <h2 class="font-semibold text-black/80 hover:underline hover:text-primary">
                                 {{ $post->name }}</h2>
                             <p class="opacity-60 text-sm">{{ $this->timeAgo($post) }}</p>

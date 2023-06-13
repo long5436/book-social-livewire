@@ -18,6 +18,7 @@ use App\Http\Livewire\Pages\Book\Home;
 use App\Http\Livewire\Pages\Book\Postblog;
 use App\Http\Livewire\Pages\Login;
 use App\Http\Livewire\Pages\Post\CreatePost;
+use App\Http\Livewire\Pages\Post\PostView;
 use App\Http\Livewire\Pages\PostBookmark;
 use App\Http\Livewire\Pages\Profileuser;
 use App\Http\Livewire\Pages\Register;
@@ -59,6 +60,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/doi-mat-khau', ChangePassword::class)->name('user.changepass');
 
     Route::get('/bai-viet-moi', CreatePost::class)->name('post.create');
+    Route::get('/bai-viet/{slug}', PostView::class)->name('post.view');
 });
 
 

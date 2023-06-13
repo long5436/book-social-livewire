@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('book_id');
             $table->integer('user_id');
             $table->string('name');
+            $table->string('slug');
             $table->longText('content');
             $table->timestamps();
         });

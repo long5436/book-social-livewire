@@ -13,7 +13,8 @@ class Post extends Model
         'book_id',
         'user_id',
         'name',
-        'content'
+        'content',
+        'slug'
     ];
 
 
@@ -25,5 +26,10 @@ class Post extends Model
     public function book()
     {
         return $this->belongsTo(Book::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 }
