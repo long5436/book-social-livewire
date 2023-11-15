@@ -18,12 +18,12 @@ class Comment extends Model
         'content'
     ];
 
-    public function books()
+    public function book()
     {
         return $this->belongsTo(Book::class);
     }
 
-    public function posts()
+    public function post()
     {
         return $this->belongsTo(Post::class);
     }
@@ -31,5 +31,10 @@ class Comment extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function react()
+    {
+        return $this->belongsTo(React::class);
     }
 }

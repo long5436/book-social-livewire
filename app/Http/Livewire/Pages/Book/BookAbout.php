@@ -9,6 +9,7 @@ use Auth;
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
 
+
 class BookAbout extends Component
 {
     public $book;
@@ -20,7 +21,6 @@ class BookAbout extends Component
     public $chapFirst;
     public $myRating = [];
     public $isShowNoti;
-    public $comments;
     public $isHasBookmark;
     public $cateBooks;
 
@@ -39,7 +39,7 @@ class BookAbout extends Component
         $this->totalPages = $chaps->lastPage();
         $this->totalChaps = $book->chaps()->count();
         $this->chapFirst = $book->chaps()->where('order_by', 1)->first();
-        $this->comments = $this->book->comments->whereNull('parent_id')->whereNull('delete', true);
+        // $this->comments = $this->book->comments->whereNull('parent_id')->whereNull('delete', true);
 
         if (Auth::check()) {
             $this->myRating = $book->ratings->where('user_id', Auth::user()->id);
@@ -62,6 +62,8 @@ class BookAbout extends Component
     {
         return view('livewire.pages.book.book-about');
     }
+
+
 
     public function getAverage()
     {

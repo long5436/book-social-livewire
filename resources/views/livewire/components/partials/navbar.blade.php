@@ -5,7 +5,7 @@
             <div class="py-4 mx-4 lg:mx-0 flex justify-between">
 
                 <div class="flex items-center">
-                    <a href="/">
+                    <a href="/" wire:navigate>
                         <img class="h-10" src="{{ asset('images/logo.png') }}" alt="">
                     </a>
 
@@ -66,13 +66,13 @@
                                     class="p-2 absolute end-0 invisible group-hover:visible transition duration-500 bg-white border rounded-md w-52">
 
 
-                                    <a href="{{ route('user.profile') }}"
+                                    <a href="{{ route('user.profile') }}" wire:navigate
                                         class="block rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-50 hover:text-gray-700 border border-transparent hover:border-black/10"
                                         role="menuitem">
                                         Tài khoản
                                     </a>
 
-                                    <a href="{{ route('book.bookmark') }}"
+                                    <a href="{{ route('book.bookmark') }}" wire:navigate
                                         class="block rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-50 hover:text-gray-700 border border-transparent hover:border-black/10"
                                         role="menuitem">
                                         Đánh dấu
@@ -87,7 +87,7 @@
                                 </div>
                             </div>
                         @else
-                            <a href="{{ route('login') }}"
+                            <a href="{{ route('login') }}" wire:navigate
                                 class="inline-block bg-primary text-white px-4 py-1 rounded-lg text-base hover:opacity-90">Đăng
                                 nhập</a>
                         @endif
@@ -142,19 +142,19 @@
 
                         <nav aria-label="Main Nav" class="mt-6 flex flex-col space-y-1">
 
-                            <a href="{{ route('user.profile') }}"
+                            <a href="{{ route('user.profile') }}" wire:navigate
                                 class="flex items-center gap-2 rounded-lg bg-gray-100 px-4 py-2 text-gray-700 hover:bg-primary/20">
 
                                 <span class=""> Tài khoản </span>
                             </a>
-                            <a href="{{ route('book.bookmark') }}"
+                            <a href="{{ route('book.bookmark') }}" wire:navigate
                                 class="flex items-center gap-2 rounded-lg bg-gray-100 px-4 py-2 text-gray-700 hover:bg-primary/20">
 
                                 <span class=""> Đánh dấu </span>
                             </a>
 
                             @if (Auth::check())
-                                <a href="{{ route('post.create') }}"
+                                <a href="{{ route('post.create') }}" wire:navigate
                                     class="flex items-center gap-2 rounded-lg bg-gray-100 px-4 py-2 text-gray-700 hover:bg-primary/20">
                                     Viết bài mới</span>
                                 </a>
@@ -163,14 +163,15 @@
                             <a href="#" wire:click="btnLogout"
                                 class="flex
                                 items-center gap-2 rounded-lg bg-gray-100 px-4 py-2 text-gray-700
-                                hover:bg-primary/20">
+                                hover:bg-primary/20"
+                                wire:navigate>
 
                                 <span class=""> Đăng xuất </span>
                             </a>
 
                         </nav>
                     @else
-                        <a href="{{ route('login') }}"
+                        <a href="{{ route('login') }}" wire:navigate
                             class="inline-block bg-primary text-white px-4 py-1 rounded-lg text-base hover:opacity-90">Đăng
                             nhập</a>
                     @endif

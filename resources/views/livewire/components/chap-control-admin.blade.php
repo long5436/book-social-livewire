@@ -3,7 +3,7 @@
     @if ($chap->order_by > 1)
         @foreach ($chaps->where('order_by', $chap->order_by - 1) as $item)
             {{-- {{ $item }} --}}
-            <a href="{{ route('admin.book.chap.edit', $item->id) }}"
+            <a href="{{ route('admin.book.chap.edit', $item->id) }}" wire:navigate
                 class="inline-block bg-primary text-white px-6 py-2 rounded-md text-base hover:opacity-90">
                 Chương trước
             </a>
@@ -21,7 +21,7 @@
 
     @if ($chap->order_by < $chaps->count())
         @foreach ($chaps->where('order_by', $chap->order_by + 1) as $item)
-            <a href="{{ route('admin.book.chap.edit', $item->id) }}"
+            <a href="{{ route('admin.book.chap.edit', $item->id) }}" wire:navigate
                 class="inline-block bg-primary text-white px-6 py-2 rounded-md text-base hover:opacity-90">
                 Chương tiếp theo
             </a>

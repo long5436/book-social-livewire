@@ -70,6 +70,12 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Post::class);
     }
 
+    public function reacts()
+    {
+        return $this->hasMany(React::class);
+    }
+
+
     public function authorizeRoles($roles)
     {
         if (is_array($roles)) {

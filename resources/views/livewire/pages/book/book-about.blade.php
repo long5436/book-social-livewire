@@ -146,7 +146,7 @@
             </div>
 
             <div class="pt-24 px-0 ">
-                <livewire:components.comments :book="$book" :comments="$comments" />
+                <livewire:components.comments :book="$book" />
             </div>
 
             <div class="">

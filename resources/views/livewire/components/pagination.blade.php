@@ -15,7 +15,7 @@
 
         @if ($currentPage != 1)
             <li>
-                <a href="{{ $href . $currentPage - 1 }}"
+                <a href="{{ $href . $currentPage - 1 }}" wire:navigate
                     class="border border-primary/50 py-1 px-3 text-primary rounded-sm bg-white hover:bg-primary hover:text-white">
                     <i class="fa-solid fa-chevron-left text"></i>
                 </a>
@@ -28,7 +28,7 @@
             @endphp
 
             <li>
-                <a href="{{ $result }}"
+                <a href="{{ $result }}" wire:navigate
                     class="border border-primary/50 py-1 px-3 rounded-sm  hover:bg-primary hover:text-white {{ $currentPage == $pagi ? 'bg-primary text-white' : 'bg-white text-primary' }}">
                     {{ $pagi }}
                 </a>
@@ -37,7 +37,7 @@
 
         @if ($currentPage != $totalPage)
             <li>
-                <a href="{{ $href . $currentPage + 1 }}"
+                <a href="{{ $href . $currentPage + 1 }}" wire:navigate
                     class="border border-primary/508 py-1 px-3 text-primary rounded-sm bg-white hover:bg-primary hover:text-white">
                     <i class="fa-solid fa-chevron-right"></i>
                 </a>
