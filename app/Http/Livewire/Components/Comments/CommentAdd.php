@@ -13,6 +13,7 @@ class CommentAdd extends Component
     public $book;
     public $post;
     public $parentId;
+    public $parentComment;
     public $likeDefault = [
         'like' => 0,
         'haha' => 0,
@@ -20,13 +21,25 @@ class CommentAdd extends Component
         'angry' => 0
     ];
 
-
     public function btnComment()
     {
+
+        // dd($this->parentComment);
+
         // dd($this->book);
         // $this->validate();
-        $postId = $this->post ? $this->post->id : null;
-        $bookId = $this->book ? $this->book->id : null;
+        $postId = null;
+        $bookId = null;
+
+        if ($this->parentComment) {
+            $postId = $this->parentComment->post_id;
+            $bookId = $this->parentComment->book_id;
+            $this->parentId = $this->parentComment->id;
+        } else {
+            $postId = $this->post ? $this->post->id : null;
+            $bookId = $this->book ? $this->book->id : null;
+        }
+
         // dd($postId);
 
         if (Auth::check()) {
@@ -34,7 +47,7 @@ class CommentAdd extends Component
             $newComment = Comment::create([
                 'book_id' => $bookId,
                 'post_id' => $postId,
-                'content' => $this->parentId ? $this->contentRep : $this->content,
+                'content' =>  $this->content,
                 'parent_id' => $this->parentId ? $this->parentId : null,
                 'user_id' => Auth::user()->id,
                 'like' => json_encode($this->likeDefault),
@@ -44,16 +57,11 @@ class CommentAdd extends Component
                 $this->content = '';
 
                 // dispatch emit update dom
-                $this->dispatch('add-new-comment', newComment: $newComment);
-
-                // $newComment->user = (object) array(
-                //     'id' => Auth::user()->id,
-                //     'name' => Auth::user()->name
-                // );
-
-                // if (!$this->parentId) {
-                //     $this->comments->push($newComment);
-                // }
+                if ($this->parentComment) {
+                    $this->dispatch('add-new-comment-sub', newComment: $newComment);
+                } else {
+                    $this->dispatch('add-new-comment', newComment: $newComment);
+                }
             }
         }
     }

@@ -79,7 +79,8 @@
                 @endif
             </div>
 
-            <button class="inline-block ps-6 text-black/60 hover:text-primary/80 book-comment-btn">
+            <button class="inline-block ps-6 text-black/60 hover:text-primary/80 book-comment-btn"
+                wire:click="toggleFormComment">
                 <i class="fa-solid fa-reply"></i>
                 <span>Trả lời</span>
             </button>
@@ -118,6 +119,11 @@
                 </div>
             @endif
         </div> --}}
+
+        @if ($showFormComment)
+            <p>Trả lời bình luận</p>
+            <livewire:components.comments.comment-add :parentComment="$commentItem" />
+        @endif
 
         {{-- doan nay co nhieu loi --}}
         {{-- start sub --}}
@@ -269,24 +275,34 @@
             @endif
         </div>  --}}
 
-        {{-- end sub --}}
 
-        {{-- @php
-            $cmtCount = $this->getSubCommentCount($commentItem->id);
-        @endphp --}}
 
-        {{-- @if ($cmtCount > 0)
+
+
+
+
+        @if ($commentCount > 0)
             <div>
-                <button class="text-black/60 hover:text-primary/80"
-                    wire:click='loadSubComments({{ $item->id }}, {{ $index }})'>
+                <button class="text-black/60 hover:text-primary/80 mb-3"
+                    wire:click='loadSubComments({{ $commentItem->id }}, {{ true }})'>
                     <i class="fa-solid fa-arrow-turn-up rotate-90"></i>
                     <span>
 
-                        {{ $cmtCount }}
+                        {{ $subComments ? 'Ẩn ' : '' }} {{ $commentCount }}
 
                         Trả lời</span>
                 </button>
             </div>
-        @endif --}}
+        @endif
+
+        {{-- start sub --}}
+        @if ($subComments)
+
+            {{-- @foreach ($subComments->reverse() as $index => $item) --}}
+            @foreach ($subComments as $index => $item)
+                <livewire:components.comments.comment-item :commentItem="$item" :wire:key="'item-'.$item->id" />
+            @endforeach
+        @endif
+        {{-- end sub --}}
     </div>
 </div>

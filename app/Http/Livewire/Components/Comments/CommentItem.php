@@ -7,24 +7,52 @@ use Illuminate\Support\Carbon;
 use App\Models\Comment;
 use App\Models\React;
 use Auth;
+use Livewire\Attributes\On;
 
 class CommentItem extends Component
 {
     public $commentItem;
+    public $showFormComment = false;
+    public $subComments;
+    public $commentCount = 0;
 
     function mount()
     {
-        // dd($this->commentItem);
+        $this->getSubCommentCount();
     }
 
-    public function getSubCommentCount($id)
+    public function getSubCommentCount()
     {
-        return Comment::where('parent_id', $id)
+        $count = Comment::where('parent_id', $this->commentItem->id)
             ->where(function ($query) {
                 $query->where('is_deleted', false)
                     ->orWhereNull('is_deleted');
             })
             ->count();
+
+        $this->commentCount = $count;
+    }
+
+    public function loadSubComments($id, $onCLick)
+    {
+
+        if ($this->subComments && $onCLick) {
+            $this->subComments = null;
+            return;
+        }
+
+        $subComments = Comment::where('parent_id', $id)
+            ->where(function ($query) {
+                $query->where('is_deleted', false)
+                    ->orWhereNull('is_deleted');
+            })
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        // dd($subComment);
+        // dd($subComment);
+        // $this->comments[$index]->sub =  $subComment;
+        $this->subComments = $subComments;
     }
 
     public function btnLike($key)
@@ -36,6 +64,7 @@ class CommentItem extends Component
 
 
             $like = $comment->like  ? json_decode($comment->like) : (object) $this->likeDefault;
+
             // dd($like->{$key});
             // dd($like);
 
@@ -100,6 +129,32 @@ class CommentItem extends Component
 
         return  $timeAgo;
     }
+
+    function toggleFormComment()
+    {
+        $this->showFormComment = !$this->showFormComment;
+    }
+
+    #[On('add-new-comment-sub')]
+    public function postAdded($newComment)
+    {
+        // dd($newComment);
+        $newComment = (object) $newComment;
+        // $newComment->user = (object) array(
+        //     'id' => Auth::user()->id,
+        //     'name' => Auth::user()->name
+        // );
+
+        // $this->comments->add($d);
+        if ($newComment->parent_id == $this->commentItem->id) {
+            $d = Comment::find($newComment->id);
+            $this->loadSubComments($this->commentItem->id, null);
+            // $this->subComments->add($d);
+            $this->getSubCommentCount();
+            $this->toggleFormComment();
+        }
+    }
+
 
     public function render()
     {

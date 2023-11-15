@@ -50,18 +50,4 @@ class Comments extends Component
         $d = Comment::find($newComment->id);
         $this->comments->add($d);
     }
-
-
-    public function loadSubComments($id, $index)
-    {
-        $subComment = Comment::where('parent_id', $id)
-            ->where(function ($query) {
-                $query->where('is_deleted', false)
-                    ->orWhereNull('is_deleted');
-            })
-            ->orderBy('created_at', 'desc')
-            ->get();
-        // dd($subComment);
-        $this->comments[$index]->sub =  $subComment;
-    }
 }
