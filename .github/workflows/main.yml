@@ -20,10 +20,10 @@ jobs:
       - name: Deploy to Server
         uses: ngocquyhoang/deploy@laravel
         with:
-          user: user
-          host: host
-          port: port
-          path: path
-          owner: owner
+          user: 'user'
+          host: '127.0.0.1'
+          port: '8080'
+          path: '/'
+          owner: 'owner'
         env:
           DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
