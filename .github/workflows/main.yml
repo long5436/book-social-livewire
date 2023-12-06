@@ -15,8 +15,6 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: "8.3.0"
-      - name: Speed up the packages installation process
-        run: composer global require hirak/prestissimo
       - name: Install Packages
         run: composer install --no-dev
       - name: Deploy to Server
