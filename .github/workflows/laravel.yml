@@ -40,6 +40,8 @@ jobs:
         unzip -o images6.zip -d storage/app/public 
         unzip -o images7.zip -d storage/app/public
         php artisan storage:link
+    - name: Create databse
+      run: touch database/database.sqlite
     - name: Execute tests (Unit and Feature tests) via PHPUnit
       env:
         DB_CONNECTION: sqlite
