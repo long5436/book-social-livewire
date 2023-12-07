@@ -30,7 +30,7 @@ jobs:
         touch database/database.sqlite
     - name: Extract images zip file
       run: |
-        apt install unzip -y
+        sudo apt-get install unzip -y
         unzip -o images.zip -d storage/app/public
         unzip -o images2.zip -d storage/app/public 
         unzip -o images3.zip -d storage/app/public 
